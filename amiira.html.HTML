@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4; margin: 0; }
+        #calculator { background-color: #222; padding: 20px; border-radius: 30px; display: grid; grid-template-columns: repeat(4, 60px); gap: 10px; }
+        button { width: 60px; height: 60px; border-radius: 50%; border: none; font-size: 18px; font-weight: bold; cursor: pointer; color: white; }
+        
+        /* Midabada */
+        .btn-number { background-color: #444; }
+        .btn-orange { background-color: #f39c12; }
+        .btn-green { color: #2ecc71; background-color: #444; font-size: 24px; }
+        .btn-red { color: #e74c3c; background-color: #444; font-size: 24px; }
+        
+        #display { grid-column: span 4; height: 50px; background-color: #111; margin-bottom: 10px; border: none; color: white; text-align: right; font-size: 24px; padding: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="calculator">
+        <input id="display" readonly>
+        
+        <!-- Safka 1: Calaamadaha cusub -->
+        <button class="btn-red" onclick="clearDisplay()">C</button>
+        <button class="btn-green" onclick="appendToDisplay('%')">%</button>
+        <button class="btn-green" onclick="backspace()">⌫</button>
+        <button class="btn-green" onclick="appendToDisplay('/')">÷</button>
+        
+        <!-- Safka 2 -->
+        <button class="btn-number" onclick="appendToDisplay('7')">7</button>
+        <button class="btn-number" onclick="appendToDisplay('8')">8</button>
+        <button class="btn-number" onclick="appendToDisplay('9')">9</button>
+        <button class="btn-orange" onclick="appendToDisplay('*')">×</button>
+        
+        <!-- Safka 3 -->
+        <button class="btn-number" onclick="appendToDisplay('4')">4</button>
+        <button class="btn-number" onclick="appendToDisplay('5')">5</button>
+        <button class="btn-number" onclick="appendToDisplay('6')">6</button>
+        <button class="btn-orange" onclick="appendToDisplay('-')">-</button>
+        
+        <!-- Safka 4 -->
+        <button class="btn-number" onclick="appendToDisplay('1')">1</button>
+        <button class="btn-number" onclick="appendToDisplay('2')">2</button>
+        <button class="btn-number" onclick="appendToDisplay('3')">3</button>
+        <button class="btn-orange" onclick="appendToDisplay('+')">+</button>
+        
+        <!-- Safka 5 -->
+        <button class="btn-number" onclick="appendToDisplay('0')">0</button>
+        <button class="btn-number" onclick="appendToDisplay('.')">.</button>
+        <button class="btn-orange" onclick="calculate()" style="grid-column: span 2;">=</button>
+    </div>
+
+    <script>
+        const display = document.getElementById("display");
+        function appendToDisplay(input) { display.value += input; }
+        function clearDisplay() { display.value = ""; }
+        function backspace() { display.value = display.value.slice(0, -1); }
+        function calculate() { 
+            try { display.value = eval(display.value); } 
+            catch { display.value = "Error"; } 
+        }
+    </script>
+</body>
+</html>
